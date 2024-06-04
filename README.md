@@ -72,3 +72,13 @@ After the forest exploration is finished, the results are calculated.
 subreddit_date_score = sum(submission_weight * sentiment_score) / sum(submission_weight)
 
 The results, subreddit_date_score and engagement_score, are then stored in PostgreSQL.
+
+### Extraction using PRAW
+
+PRAW is used to extract the top 10 (within past 24 hours) posts from 30 different subreddits every day (orchestrated using Dagster). The posts are recursively parsed, then saved as BSON files in MongoDB. Heavily trafficked posts, such as those in extremely popular subreddits, are also capped in tree height and width to manage file size. Parameters were implemented in the recursive extraction algorithm to impose a limits of:
+
+- Max top-level comments: 10
+- Max comment replies: 3 per node
+- Max tree/reply depth: 3
+
+This still allowed for analysis of the top 131 (1 + 10 + 30 + 90) different content submissions per post, which was considered adequate to maintain sentiment capture in each post, while lowering file sizes from 100-400kb to 10-20kb, enabling a longer-term, more scalable storage solution.
