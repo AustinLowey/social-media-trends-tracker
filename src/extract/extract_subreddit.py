@@ -14,8 +14,8 @@ def fetch_subreddit_data(
     subreddit_name,
     num_posts=10,
     max_depth=3,
-    max_top_level_comments=10,
-    max_replies_per_comment=5
+    max_top_level_comments=5,
+    max_replies_per_comment=2
 ):
     """Extracts top posts for a given subreddit from past 24 hours."""
     subreddit = reddit.subreddit(subreddit_name)
@@ -46,7 +46,7 @@ def fetch_subreddit_data(
         }
         extracted_data.append(post_data)
 
-    return extracted_data
+    return extracted_data, today
 
 
 def fetch_comments(
