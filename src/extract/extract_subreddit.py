@@ -18,7 +18,7 @@ def fetch_subreddit_data(
 ):
     """Extracts top posts for a given subreddit from past 24 hours while controlling the number of responses."""
     subreddit = reddit.subreddit(subreddit_name)
-    submissions = subreddit.top('day', limit=num_posts)
+    submissions = subreddit.top(time_filter='day', limit=num_posts)
 
     extracted_data = []
 
@@ -38,8 +38,8 @@ def fetch_subreddit_data(
             'upvote_score': submission.score,
             'created_utc': submission.created_utc,
             'num_comments': submission.num_comments,
-            'comments': comments_data,
             'subreddit': submission.subreddit.display_name, # For use in extracting r/all posts
+            'comments': comments_data,
         }
         extracted_data.append(post_data)
 
@@ -82,3 +82,15 @@ def fetch_comments(
         comments_data.append(comment_data)
 
     return comments_data
+
+
+if __name__ == "__main__":
+    # Test extraction code if executed directly.
+    # Save extracted post(s) as json to verify correct structure.
+    # TODO: Move this into unit test later on.
+    import json
+    subreddit_name = 'all'
+    extracted_data = fetch_subreddit_data(subreddit_name, num_posts=2)
+    for i, post_data in enumerate(extracted_data[:2]): 
+        with open(f'src/extract/post_{i+1}.json', 'w', encoding='utf-8') as f:
+            json.dump(post_data, f, indent=4)
