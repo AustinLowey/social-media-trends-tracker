@@ -1,4 +1,3 @@
-import datetime
 import os
 import praw
 
@@ -17,11 +16,10 @@ def fetch_subreddit_data(
     max_top_level_comments=5,
     max_replies_per_comment=2
 ):
-    """Extracts top posts for a given subreddit from past 24 hours."""
+    """Extracts top posts for a given subreddit from past 24 hours while controlling the number of responses."""
     subreddit = reddit.subreddit(subreddit_name)
     submissions = subreddit.top('day', limit=num_posts)
 
-    today = datetime.date.today().isoformat()
     extracted_data = []
 
     for submission in submissions:
@@ -41,12 +39,11 @@ def fetch_subreddit_data(
             'created_utc': submission.created_utc,
             'num_comments': submission.num_comments,
             'comments': comments_data,
-            'subreddit': subreddit_name,
-            'fetch_date': today
+            'subreddit': submission.subreddit.display_name, # For use in extracting r/all posts
         }
         extracted_data.append(post_data)
 
-    return extracted_data, today
+    return extracted_data
 
 
 def fetch_comments(
