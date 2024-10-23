@@ -97,5 +97,5 @@ if __name__ == "__main__":
     subreddit_name = 'all'
     extracted_data = fetch_subreddit_data_as_json(subreddit_name, num_posts=2)
     for i, post_data in enumerate(extracted_data[:2]): 
-        with open(f'src/extract/output/post_{i+1}.json', 'w', encoding='utf-8') as f:
+        with open(f'src/extract/output_samples/post_{i+1}.json', 'w', encoding='utf-8') as f:
             json.dump(post_data, f, indent=4)
