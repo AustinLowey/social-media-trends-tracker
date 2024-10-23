@@ -9,16 +9,19 @@ reddit = praw.Reddit(
     user_agent=os.getenv("PRAW_USER_AGENT"),
 )
 
-def fetch_subreddit_data(
+
+def fetch_subreddit_data_as_json(
     subreddit_name,
+    time_filter='day',
     num_posts=10,
     max_depth=3,
     max_top_level_comments=5,
     max_replies_per_comment=2
 ):
-    """Extracts top posts for a given subreddit from past 24 hours while controlling the number of responses."""
+    """Extracts top posts for a given subreddit and time window while controlling the number of responses."""
+
     subreddit = reddit.subreddit(subreddit_name)
-    submissions = subreddit.top(time_filter='day', limit=num_posts)
+    submissions = subreddit.top(time_filter=time_filter, limit=num_posts)
 
     extracted_data = []
 
@@ -54,6 +57,7 @@ def fetch_comments(
     current_depth=1
 ):
     """Fetches comments recursively, handling both top-level and nested comments."""
+
     comment_forest.replace_more(limit=0)
     comments_data = []
 
@@ -87,10 +91,11 @@ def fetch_comments(
 if __name__ == "__main__":
     # Test extraction code if executed directly.
     # Save extracted post(s) as json to verify correct structure.
-    # TODO: Move this into unit test later on.
+    # TODO: Move this section into unit tests later on.
+
     import json
     subreddit_name = 'all'
-    extracted_data = fetch_subreddit_data(subreddit_name, num_posts=2)
+    extracted_data = fetch_subreddit_data_as_json(subreddit_name, num_posts=2)
     for i, post_data in enumerate(extracted_data[:2]): 
-        with open(f'src/extract/post_{i+1}.json', 'w', encoding='utf-8') as f:
+        with open(f'src/extract/output/post_{i+1}.json', 'w', encoding='utf-8') as f:
             json.dump(post_data, f, indent=4)
