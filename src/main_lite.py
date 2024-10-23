@@ -37,7 +37,7 @@ def extract_reddit_data_as_csv(
 
     # Open the CSV file for writing
     now = datetime.now().strftime('%Y%m%d')
-    output_csv_fname = f'src/extract/output/subreddits_top_data_{now}.csv'
+    output_csv_fname = f'src/extract/output_samples/subreddits_top_data_{now}.csv'
     with open(output_csv_fname, mode='w', newline='', encoding='utf-8') as csvfile:
         csvwriter = csv.writer(csvfile)
 
@@ -46,10 +46,11 @@ def extract_reddit_data_as_csv(
             [
                 'subreddit',
                 'post_id',
+                'submission_type',
                 'upvote_score',
                 'submission_content',
                 'author',
-                'created_utc',
+                'created_on', # Local time
             ]
         )
 

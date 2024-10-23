@@ -35,6 +35,7 @@ def fetch_subreddit_data_as_csv(
         csvwriter.writerow([
             submission.subreddit.display_name,
             submission.id,
+            'post',
             submission.score,
             submission_content,
             str(submission.author) if submission.author else None,
@@ -75,6 +76,7 @@ def fetch_comments(
         csvwriter.writerow([
             subreddit_name,
             post_id,
+            'response',
             comment.score,
             comment.body,
             str(comment.author) if comment.author else None,
