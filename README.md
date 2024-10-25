@@ -1,8 +1,8 @@
-# Social Media Trends Tracker
+# Data Science - Social Media Trends Tracker
 
 ## Project Overview
 
-This project scrapes social media posts daily using PRAW (Python Reddit API Wrapper), stores the data in PostgreSQL as JSONB, processes and analyzes the data using a combination of Python and dbt, and finally visualizes the trends and insights through a dashboard. This system helps in understanding time series social media trends regarding general sentiment, mental health, extremism, and hate speech.
+Complete end-to-end, full-stack data application. Scrapes social media posts daily using PRAW (Python Reddit API Wrapper), stores the data in PostgreSQL as JSONB, processes and analyzes the data using a combination of Python (NLP/ML) and dbt, and finally visualizes the trends and insights through a dashboard. This system helps in understanding time series social media trends regarding general sentiment, mental health, extremism, and hate speech.
 
 A second API was also created to extract reddit data as a csv file for easy conjunction with current LLM capabilities.
 
