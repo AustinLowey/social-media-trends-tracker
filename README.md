@@ -6,6 +6,12 @@ This project scrapes social media posts daily using PRAW (Python Reddit API Wrap
 
 A second API was also created to extract reddit data as a csv file for easy conjunction with current LLM capabilities.
 
+### [ERD and Date Pipeline Overview:](./assets/ERD-Data-Pipeline-and-Transformations.pdf)
+
+<a href="./assets/ERD-Data-Pipeline-and-Transformations.pdf">
+    <img src="/assets/ERD-Data-Pipeline-and-Transformations-slide1.png" alt="Presentation Thumbnail" width="900">
+</a>
+
 ## Key Features
 
 - **Data Extraction**: Utilizes Python/PRAW to fetch posts from specified subreddits.
