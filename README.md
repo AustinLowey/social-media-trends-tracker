@@ -6,7 +6,7 @@ Complete end-to-end, full-stack data application. Scrapes social media posts dai
 
 A second API was also created to extract reddit data as a csv file for easy conjunction with current LLM capabilities.
 
-### [ERD and Date Pipeline Overview (click for fully-detailed pdf):](./assets/ERD-Data-Pipeline-and-Transformations.pdf)
+### [ERD and Data Pipeline Overview (click for fully-detailed pdf):](./assets/ERD-Data-Pipeline-and-Transformations.pdf)
 
 <a href="./assets/ERD-Data-Pipeline-and-Transformations.pdf">
     <img src="/assets/ERD-Data-Pipeline-and-Transformations-slide1.png" alt="Presentation Thumbnail" width="900">
